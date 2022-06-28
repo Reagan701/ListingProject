@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+#Landing{
+    background:
+        linear-gradient(rgba(53, 98, 176, 0.7),
+            rgba(53, 98, 176, 0.7)),
+        url(../images/mountains-g3d56cdc58_1920.jpg);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.imgContainer {
+    position: relative;
+}
+
+.imgContainer img{
+    object-fit: cover;
+    width: 13rem;
+    height: 23rem;
+}
+
+
+.preHover{
+    background:
+        linear-gradient(rgba(53, 98, 176, 0.0),
+            rgba(28, 28, 28, 0.7));
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    opacity: 1;
+    transition: all 0.3s linear;
+}
+.content{
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.875rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-end;
+    opacity: 1;
+    transition: all 0.3s linear;
+}
+
+.imgContainer:hover .preHover {
+    opacity: 0;
+}
