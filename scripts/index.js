@@ -1,17 +1,12 @@
 const container = document.getElementById("ListingID");
 
 function localStorageInfo(){
-    if(!JSON.parse(localStorage.getItem('records'))){
-        localStorage.setItem('records', JSON.stringify(currentItems));
-        return JSON.parse(localStorage.getItem('records'));
-    }else{
-        return JSON.parse(localStorage.getItem('records'));
-    }
+    return JSON.parse(localStorage.getItem('records'));
 }
-
 
 function getInfo(){
     let localInfo = localStorageInfo();
+
     localInfo.forEach(e => {
         container.innerHTML += `
         <div class="my-2 col-md-4">

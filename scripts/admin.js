@@ -1,4 +1,8 @@
 const container = document.getElementById("tableContainer");
+const propertyFilter = document.getElementById("FilterByProperty");
+const locationFilter = document.getElementById("FilterByLocation");
+const propertySizeFilter = document.getElementById("FilterBySize");
+const priceFilter = document.getElementById("FilterByPrice");
 const items = [{
     id: 1,
     title: "New Apartment",
@@ -46,7 +50,7 @@ const items = [{
 },{
     id: 5,
     title: "Modern Apartment",
-    price: 97000,
+    price: 970000,
     bedrooms: 1,
     bathrooms: 2,
     parking:1,
@@ -111,7 +115,10 @@ const items = [{
     img: "../images/propertyImages/home-g214be8d5d_1920.jpg"
 }]
 
-// console.log(localStorage.getItem('records'));
+// localStorage.clear();
+let currentlyFiltered = items;
+
+let currentItems = JSON.parse(localStorage.getItem('records')) ? JSON.parse(localStorage.getItem('records')) : items;
 
 function setItems(){
     if(!JSON.parse(localStorage.getItem('records'))){
@@ -124,14 +131,11 @@ function setItems(){
 
 setItems();
 
-let currentItems = JSON.parse(localStorage.getItem('records')) ? JSON.parse(localStorage.getItem('records')) : items;
-
-
-
 function createTable(curItems){
+    container.innerHTML = '';
     curItems.forEach(e => {
         container.innerHTML += `<tr>
-    <th scope="row">${e.id}</th>
+    <th >${e.id}</th>
         <td><img src="${e.img}" class="img-fluid"></  td>
         <td>${e.title}</td>
         <td>${e.price}</td>
@@ -155,8 +159,63 @@ createTable(currentItems);
 function deleteItem(id){
     let curStorage = JSON.parse(localStorage.getItem('records'));
     curStorage.splice((id-1),1);
+    for(let i = 0; i<curStorage.length;i++){
+        curStorage[i].id = i+1;
+    }
     localStorage.clear();
-    container.innerHTML = '';
     localStorage.setItem('records',JSON.stringify(curStorage));
+    currentItems = curStorage;
     createTable(curStorage);
+}
+
+let previousFilter = items;
+
+function filterByPrice(e){
+    if(e.target.value =="Any"){
+        return createTable(previousFilter);
+    }else{
+        let filteredResult = currentItems.filter(x =>{
+            return x.price <= e.target.value;
+        });
+        previousFilter = currentItems;
+        currentItems = filteredResult;
+        createTable(filteredResult);
+    }
+}
+
+function filterByLocation(e){
+    if(e.target.value == "Any"){
+        currentItems = items;
+        return createTable(currentItems);
+    }else{
+        let filteredResult = currentlyFiltered.filter(x =>{
+            return ~x.address.indexOf(e.target.value);
+        });
+        currentItems = filteredResult;
+        createTable(filteredResult);
+    }
+}
+
+function filterByPropertySize(e){
+    if(e.target.value =="Any"){
+        currentItems = items;
+        return createTable(currentItems);
+    }
+    let filteredResult = currentItems.filter(x =>{
+        return x.bedrooms <= e.target.value;
+    });
+    currentItems = filteredResult;
+    createTable(filteredResult);
+}
+
+function filterByPropertyType(e){
+    if(e.target.value =="Any"){
+        currentItems = items;
+        return createTable(currentItems);
+    }
+    let filteredResult = currentItems.filter(x =>{
+        return x.propertyType == e.target.value;
+    });
+    currentItems = filteredResult;
+    createTable(filteredResult);
 }
