@@ -1,8 +1,9 @@
 const container = document.getElementById("tableContainer");
-const propertyFilter = document.getElementById("FilterByProperty");
-const locationFilter = document.getElementById("FilterByLocation");
-const propertySizeFilter = document.getElementById("FilterBySize");
-const priceFilter = document.getElementById("FilterByPrice");
+let propertyFilter = document.getElementById("FilterByProperty");
+let locationFilter = document.getElementById("FilterByLocation");
+let propertySizeFilter = document.getElementById("FilterBySize");
+let priceFilter = document.getElementById("FilterByPrice");
+
 const items = [{
     id: 1,
     title: "New Apartment",
@@ -168,54 +169,69 @@ function deleteItem(id){
     createTable(curStorage);
 }
 
-let previousFilter = items;
+function filterAll(){
+    
+    let filteredProperties, filteredLocations,filteredSizes,filteredPrices;
 
-function filterByPrice(e){
-    if(e.target.value =="Any"){
-        return createTable(previousFilter);
+    if(propertyFilter.value == "Any"){
+        filteredProperties = currentItems;
     }else{
-        let filteredResult = currentItems.filter(x =>{
-            return x.price <= e.target.value;
-        });
-        previousFilter = currentItems;
-        currentItems = filteredResult;
-        createTable(filteredResult);
+        filteredProperties = currentItems.filter( x=>{
+            return x.propertyType == propertyFilter.value;
+        })
     }
-}
-
-function filterByLocation(e){
-    if(e.target.value == "Any"){
-        currentItems = items;
-        return createTable(currentItems);
+    
+    if(locationFilter.value == "Any"){
+        filteredLocations = currentItems;
     }else{
-        let filteredResult = currentlyFiltered.filter(x =>{
-            return ~x.address.indexOf(e.target.value);
-        });
-        currentItems = filteredResult;
-        createTable(filteredResult);
+        filteredLocations = currentItems.filter( x=>{
+            return ~x.address.indexOf(locationFilter.value)
+        })
     }
-}
+    
+    if(propertySizeFilter.value == "Any"){
+        filteredSizes = currentItems;
+    }else{
+        filteredSizes = currentItems.filter( x=>{
+            return x.bedrooms <= propertySizeFilter.value;
+        })
+    }
+    if(priceFilter.value == "Any"){
+        filteredPrices = currentItems;
+    }else{
+        filteredPrices = currentItems.filter( x=>{
+            return x.price <= priceFilter.value;
+        })
+    }
+    const allFilters = [filteredProperties, filteredLocations ,filteredSizes ,filteredPrices];
 
-function filterByPropertySize(e){
-    if(e.target.value =="Any"){
-        currentItems = items;
-        return createTable(currentItems);
-    }
-    let filteredResult = currentItems.filter(x =>{
-        return x.bedrooms <= e.target.value;
+    let values = allFilters.filter(x =>{
+        return x.length!=10;
     });
-    currentItems = filteredResult;
-    createTable(filteredResult);
-}
 
-function filterByPropertyType(e){
-    if(e.target.value =="Any"){
-        currentItems = items;
-        return createTable(currentItems);
+    if(values.length == 0){
+        for(let i = 0; i<currentItems.length;i++){
+            currentItems[i].id = i+1;
+        }
+        createTable(currentItems);
+    }else{
+        let arrayOfArrays = [];
+    
+        for(let i = 0; i<values.length;i++){
+            arrayOfArrays.push(values[i].length);
+        }
+    
+        const minValueIndex = (arrayOfArrays.indexOf(Math.min(...arrayOfArrays)));
+        const maxValueIndex = (arrayOfArrays.indexOf(Math.max(...arrayOfArrays)));
+    
+        let filter = values[maxValueIndex].filter(x =>{
+            return values[minValueIndex].includes(x);
+        })
+    
+        for(let i = 0; i<filter.length;i++){
+            filter[i].id = i+1;
+        }
+        createTable(filter);
     }
-    let filteredResult = currentItems.filter(x =>{
-        return x.propertyType == e.target.value;
-    });
-    currentItems = filteredResult;
-    createTable(filteredResult);
+
 }

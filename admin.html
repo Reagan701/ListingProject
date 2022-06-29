@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-3">
                 <h6>By Property</h6>
-                <select name="FilterByProperty" id="FilterByProperty" onchange="filterByPropertyType(event)">
+                <select name="FilterByProperty" id="FilterByProperty">
                     <option value="Any">Any</option>
                     <option value="Apartment">Apartment</option>
                     <option value="Villa">Villa</option>
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-3">
                 <h6>By Location</h6>
-                <select name="FilterByLocation" id="FilterByLocation" onchange="filterByLocation(event)">
+                <select name="FilterByLocation" id="FilterByLocation">
                     <option value="Any">Any</option>
                     <option value="FL">Miami, Florida</option>
                     <option value="IL">Chicago, Illinois</option>
@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-3">
                 <h6>By Property Size</h6>
-                <select name="FilterBySize" id="FilterBySize" onchange="filterByPropertySize(event)">
+                <select name="FilterBySize" id="FilterBySize">
                     <option value="Any">Any</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -48,13 +48,16 @@
             </div>
             <div class="col-md-3">
                 <h6>By Budget</h6>
-                <select name="FilterByPrice" id="FilterByPrice" onchange="filterByPrice(event)">
+                <select name="FilterByPrice" id="FilterByPrice">
                     <option value="Any">Any</option>
                     <option value="250000">$250,000</option>
                     <option value="500000">$500,000</option>
                     <option value="750000">$750,000</option>
                     <option value="1000000">$1,000,000</option>
                 </select>
+            </div>
+            <div class="mt-3 col-md-3">
+                <button onclick="filterAll()" class="btn btn-primary">Search</button>
             </div>
             <div class="row">
                 <table class="table">
