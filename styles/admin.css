@@ -19,3 +19,7 @@
     margin: 3rem;
     background-color: green;
 }
+
+i{
+    cursor: pointer;
+}

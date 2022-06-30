@@ -12,92 +12,58 @@
     <section id="Landing">
         <div class="container-fluid d-flex flex-column align-items-center justify-content-center vh-100">
             <div class="row">
-                <h1 class="display-1 text-black">Welcome</h1>
+                <h1 class="display-1">Welcome</h1>
             </div>
         </div>
     </section>
     <section id="Sort">
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
-                    <p>Looking For</p>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                          </li>
-                        </ul>
-                    </div>
+                <a class="text-center w-100" href="./admin.html"><button class="my-5 p-1 btn btn-success">Go to Admin Page</button></a>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h6>By Property</h6>
+                    <select name="FilterByProperty" id="FilterByProperty">
+                        <option value="Any">Any</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Single Family Home">Single Family Home</option>
+                        <option value="Studio">Studio</option>
+                    </select>
                 </div>
-                <div class="col-md-2">
-                    <p>Location</p>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                          </li>
-                        </ul>
-                    </div>
+                <div class="col-md-3">
+                    <h6>By Location</h6>
+                    <select name="FilterByLocation" id="FilterByLocation">
+                        <option value="Any">Any</option>
+                        <option value="FL">Miami, Florida</option>
+                        <option value="IL">Chicago, Illinois</option>
+                        <option value="CA">Los Angeles, California</option>
+                        <option value="NY">New York</option>
+                    </select>
                 </div>
-                <div class="col-md-2">
-                    <p>Property Size</p>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                          </li>
-                        </ul>
-                    </div>
+                <div class="col-md-3">
+                    <h6>By Property Size</h6>
+                    <select name="FilterBySize" id="FilterBySize">
+                        <option value="Any">Any</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
-                <div class="col-md-2">
-                    <p>Your Budget</p>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <a class="dropdown-item" href="#">Action</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                          </li>
-                        </ul>
-                    </div>
+                <div class="col-md-3">
+                    <h6>By Budget</h6>
+                    <select name="FilterByPrice" id="FilterByPrice">
+                        <option value="Any">Any</option>
+                        <option value="250000">$250,000</option>
+                        <option value="500000">$500,000</option>
+                        <option value="750000">$750,000</option>
+                        <option value="1000000">$1,000,000</option>
+                    </select>
                 </div>
-                <div class="col-sm-4">
-                    <p>Search</p>
-                    <button class="btn btn-primary">Search</button>
+                <div class="mt-3 col-md-3">
+                    <button onclick="filterAll()" class="btn btn-primary">Search</button>
                 </div>
             </div>
         </div>
