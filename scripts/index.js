@@ -194,6 +194,13 @@ function createHTML(array){
                         </div>
                     </div>
                     <div class="my-3 p-1 row">
+                        <div class="col-md-12">
+                            <div class="d-flex gap-1">
+                                <p>Property Type:</p> <p id="modalAmount">${e.propertyType}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-3 p-1 row">
                         <div class="col-md-6">
                             <div class="d-flex gap-1">
                                 <p>Price:</p> <p id="modalAmount">$${e.price}</p>
