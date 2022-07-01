@@ -18,6 +18,10 @@
     background-attachment: fixed;
 }
 
+#BorderTop{
+    border-top: 1px solid black !important;
+}
+
 .imgContainer {
     position: relative;
 }

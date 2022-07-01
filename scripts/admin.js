@@ -129,8 +129,6 @@ const items = [{
     img: "../images/propertyImages/home-g214be8d5d_1920.jpg"
 }]
 
-// localStorage.clear();
-
 let currentItems = JSON.parse(localStorage.getItem('records')) ? JSON.parse(localStorage.getItem('records')) : items;
 
 function setItems(){
@@ -311,71 +309,70 @@ function createEditModal(element){
     editModalContent.innerHTML = "";
     editModalContent.innerHTML += `
     <div>
-    <label class="form-label" for="Img">Img</label>
-    <input id="imgValue" value="${element.img}" disabled class="form-control" name="Img" type="text">
+        <label class="form-label" for="Img">Img</label>
+        <input id="imgValue" value="${element.img}" disabled class="form-control" name="Img" type="text">
     </div>
     <div>
-    <label class="form-label" for="ID">ID</label>
-    <input id="idValue" value="${element.originalId}" disabled class="form-control" name="ID" type="number">
+        <label class="form-label" for="ID">ID</label>
+        <input id="idValue" value="${element.originalId}" disabled class="form-control" name="ID" type="number">
     </div>
     <div>
-    <label class="form-label" for="Name">Name</label>
-    <input value="${element.title}" class="form-control" name="Name" type="text">
+        <label class="form-label" for="Name">Name</label>
+        <input value="${element.title}" class="form-control" name="Name" type="text">
+        </div>
+    <div>
+        <label class="form-label" for="Price">Price</label>
+        <input value="${element.price}" class="form-control" name="Price" type="number">
     </div>
-<div>
-    <label class="form-label" for="Price">Price</label>
-    <input value="${element.price}" class="form-control" name="Price" type="number">
-</div>
-<div>
-    <label class="form-label" for="Bedrooms">Bedrooms</label>
-    <input value="${element.bedrooms}" class="form-control" name="Bedrooms" type="number">
-</div>
-<div>
-    <label class="form-label" for="Bathrooms">Bathrooms</label>
-    <input value="${element.bathrooms}" class="form-control" name="Bathrooms" type="number">
-</div>
-<div>
-    <label class="form-label" for="Parking">Parking</label>
-    <input value="${element.parking}" class="form-control" name="Parking" type="number">
-</div>
-<div>
-    <label class="form-label" for="Property-Type">Property-Type</label>
-    <select id="editProperty" class="form-control" name="Property-Type">
-        <option value="Apartment">Apartment</option>
-        <option value="Villa">Villa</option>
-        <option value="SingleFamilyHome">Single Family Home</option>
-        <option value="Studio">Studio</option>
-    </select>
-</div>
-<div>
-    <label class="form-label" for="Address">Address</label>
-    <input value="${element.address}" class="form-control" name="Address" type="text">
-</div>
-<div>
-    <label class="form-label" for="Area">Area</label>
-    <input value="${element.area}" class="form-control" name="Area" type="number">
-</div>
-<div>
-    <label class="form-label" for="Location">Location</label>
-    <select id="editLocation" class="form-control" name="Location">
-        <option value="FL">Florida</option>
-        <option value="IL">Illinois</option>
-        <option value="CA">California</option>
-        <option value="NY">New York</option>
-    </select>
-</div>
-<button type="submit" data-bs-dismiss="modal" class="w-25 mx-auto mt-3 btn btn-primary">
-    Button
-</button>`
+    <div>
+        <label class="form-label" for="Bedrooms">Bedrooms</label>
+        <input value="${element.bedrooms}" class="form-control" name="Bedrooms" type="number">
+    </div>
+    <div>
+        <label class="form-label" for="Bathrooms">Bathrooms</label>
+        <input value="${element.bathrooms}" class="form-control" name="Bathrooms" type="number">
+    </div>
+    <div>
+        <label class="form-label" for="Parking">Parking</label>
+        <input value="${element.parking}" class="form-control" name="Parking" type="number">
+    </div>
+    <div>
+        <label class="form-label" for="Property-Type">Property-Type</label>
+        <select id="editProperty" class="form-control" name="Property-Type">
+            <option value="Apartment">Apartment</option>
+            <option value="Villa">Villa</option>
+            <option value="SingleFamilyHome">Single Family Home</option>
+            <option value="Studio">Studio</option>
+        </select>
+    </div>
+    <div>
+        <label class="form-label" for="Address">Address</label>
+        <input value="${element.address}" class="form-control" name="Address" type="text">
+    </div>
+    <div>
+        <label class="form-label" for="Area">Area</label>
+        <input value="${element.area}" class="form-control" name="Area" type="number">
+    </div>
+    <div>
+        <label class="form-label" for="Location">Location</label>
+        <select id="editLocation" class="form-control" name="Location">
+            <option value="FL">Florida</option>
+            <option value="IL">Illinois</option>
+            <option value="CA">California</option>
+            <option value="NY">New York</option>
+        </select>
+    </div>
+    <button type="submit" data-bs-dismiss="modal" class="w-25 mx-auto mt-3 btn btn-primary">
+        Create
+    </button>`
 
-let editLocation = document.getElementById("editLocation").options;
-for(let i = 0;i<editLocation.length;i++){
-    if(~element.address.indexOf(editLocation[i].value)){
-        document.getElementById("editLocation").value = editLocation[i].value
+    let editLocation = document.getElementById("editLocation").options;
+    for(let i = 0;i<editLocation.length;i++){
+        if(~element.address.indexOf(editLocation[i].value)){
+            document.getElementById("editLocation").value = editLocation[i].value
+        }
     }
-}
-document.getElementById("editProperty").value = element.propertyType;
-
+    document.getElementById("editProperty").value = element.propertyType;
 }
 
 function editItem(e){
@@ -424,9 +421,4 @@ function editItem(e){
     localStorage.setItem('records',JSON.stringify(curStorage));
     currentItems = curStorage;
     createTable(currentItems);
-    
-}
-
-function confirmDelete(){
-
 }
