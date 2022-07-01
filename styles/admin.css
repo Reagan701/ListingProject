@@ -26,7 +26,38 @@ i{
 
 @media screen and (max-width:769px) {
     tr{
+        text-align: center;
         display: flex;
         flex-direction: column;
+    }
+    #tableResponse{
+        display: block !important;
+    }
+    th{
+        display: none !important;
+    }
+    #tableInfo{
+        font-weight: 900;
+        font-style: italic;
+        text-decoration: underline;
+        text-underline-offset: 1px;
+        text-align: left;
+    }
+}
+
+tbody{
+    background-color: rgb(255, 255, 255);
+}
+
+tr:nth-child(even){
+    background-color: rgba(201, 201, 201, 0.1);
+}
+
+@media screen and (min-width:769px) {
+    #tableResponse{
+        display: none !important;
+    }
+    th{
+        display: table-cell !important;
     }
 }

@@ -12,8 +12,8 @@
     <div class="container">
         <div class="row">
             <div class="row text-center">
-                <div class="col-md-12 mt-5 mb-5">
-                    <a href="./index.html"><button class="my-3 btn btn-success">Go to Customer Page</button></a>
+                <div class="col-md-12 mt-5 mb-3">
+                    <a href="./index.html"><button class="mb-3 p-2 fs-5 btn btn-success">Go to Customer Page</button></a>
                     <h1>Products</h1>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <h6>By Property Size</h6>
+                <h6>By Bathroom No.</h6>
                 <select class="form-select" name="FilterBySize" id="FilterBySize">
                     <option selected value="Any">Any</option>
                     <option value="1">1</option>
@@ -58,10 +58,12 @@
                 </select>
             </div>
             <div class="mt-3 col-md-9">
-                <button onclick="filterAll()" class="btn btn-primary">Search</button>
+                <button onclick="filterAll()" class="btn btn-success">Search</button>
             </div>
             <div class="col-md-3">
-                <button data-bs-toggle="modal" data-bs-target="#CreateModal" class="btn btn-primary mt-3">Add</button>
+                <div class="d-flex justify-content-end">
+                    <button data-bs-toggle="modal" data-bs-target="#CreateModal" class="btn btn-primary mt-3">Add new Item</button>
+                </div>
             </div>
             <div class="row">
                 <table class="table">
@@ -77,7 +79,8 @@
                             <th scope="col">Property-Type</th>
                             <th scope="col">Address</th>
                             <th scope="col">Area</th>
-                            <th scope="col">Buttons</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody id="tableContainer">
@@ -87,15 +90,20 @@
             </div>
         </div>
 
-        <div class="modal fade" id="CreateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="CreateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel"> Add a new Property</h5>
+                        <h5 class="modal-title"> Add a new Property</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form class="row" onsubmit="createNewItem(event)" id="AddForm">
+                            <div>
+                                <label class="form-label" for="Image">Image Link</label>
+                                <input class="form-control" name="Image" type="text">
+                                <p class="mb-0 d-flex justify-content-end form-text">URL link to image (default image if none is given)</p>
+                            </div>
                             <div>
                                 <label class="form-label" for="Name">Name</label>
                                 <input required class="form-control" name="Name" type="text">
@@ -157,17 +165,17 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="closeModalButton" class="btn btn-secondary w-50" data-bs-dismiss="modal"> Close </button>
+                        <button type="button" id="closeModalButton" class="btn btn-dark w-25" data-bs-dismiss="modal"> Close </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="EditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="EditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel"> Edit the Item</h5>
+                        <h5 class="modal-title"> Edit the Item</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -176,17 +184,17 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="closeModalButton" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
+                        <button type="button" id="closeModalButton" class="btn btn-dark" data-bs-dismiss="modal"> Close </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="ConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="ConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel"> Delete this property </h5>
+                        <h5 class="modal-title"> Delete this property </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -194,7 +202,7 @@
                     </div>
                     <div class="modal-footer flex-nowrap">
                         <button onclick="deleteItem(deleteID)" type="button" class="btn btn-danger w-50" data-bs-dismiss="modal"> Yes </button>
-                        <button onclick="clearDelete()" type="button" class="btn btn-secondary w-50" data-bs-dismiss="modal"> No </button>
+                        <button onclick="clearDelete()" type="button" class="btn btn-dark w-50" data-bs-dismiss="modal"> No </button>
                     </div>
                 </div>
             </div>

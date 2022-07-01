@@ -11,7 +11,7 @@ const items = [{
     originalId: 1,
     id: 1,
     title: "New Apartment",
-    price: 125000,
+    price: 225000,
     bedrooms: 2,
     bathrooms: 2,
     parking:1,
@@ -59,7 +59,7 @@ const items = [{
     originalId: 5,
     id: 5,
     title: "Modern Apartment",
-    price: 970000,
+    price: 570000,
     bedrooms: 1,
     bathrooms: 2,
     parking:1,
@@ -71,7 +71,7 @@ const items = [{
     originalId: 6,
     id: 6,
     title: "Design Place Apartment",
-    price: 967000,
+    price: 467000,
     bedrooms: 5,
     bathrooms: 3,
     parking:1,
@@ -83,7 +83,7 @@ const items = [{
     originalId: 7,
     id: 7,
     title: "Design Apartment Ocean View",
-    price: 899000,
+    price: 399000,
     bedrooms: 1,
     bathrooms: 2,
     parking:1,
@@ -145,25 +145,78 @@ setItems();
 function createTable(curItems){
     container.innerHTML = '';
     curItems.forEach(e => {
-        container.innerHTML += `<tr>
-        <th>${e.id}</th>
-        <td><img src="${e.img}" class="img-fluid"></td>
-        <td>${e.title}</td>
-        <td>${e.price}</td>
-        <td>${e.bedrooms}</td>
-        <td>${e.bathrooms}</td>
-        <td>${e.parking}</td>
-        <td>${e.propertyType}</td>
-        <td>${e.address}</td>
-        <td>${e.area} sq.feet</td>
-        <td>
-        <div class="d-flex justify-content-between align-items-center">
-
-            <i onclick="editModal(${e.originalId})" class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#EditModal"></i>
-            <i onclick="checkDelete(${e.originalId})" data-bs-toggle="modal" data-bs-target="#ConfirmModal" class="fa-solid fa-trash"></i>
-        </div>
-        </td>
-    </tr>`
+        container.innerHTML += `
+        <tr>
+            <th>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">ID: </p>
+                    <p>${e.id}</p>
+                </div>
+            </th>
+            <td>
+                <img src="${e.img}" class="img-fluid w-100"></td>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Title: </p>
+                    <p id="tableInfo">${e.title}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Price: </p>
+                    <p id="tableInfo">${e.price}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Bedrooms: </p>
+                    <p id="tableInfo">${e.bedrooms}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Bathrooms: </p>
+                    <p id="tableInfo">${e.bathrooms}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Parking: </p>
+                    <p id="tableInfo">${e.parking}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Property-Type: </p>
+                    <p id="tableInfo">${e.propertyType}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Address: </p>
+                    <p id="tableInfo">${e.address}</p>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <p id="tableResponse" class="me-2">Area (in sq. ft): </p>
+                    <p id="tableInfo">${e.area}</p>
+                </div>
+            </td>
+            <td class="text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p id="tableResponse" class="m-0"> Edit: </p>
+                    <i onclick="editModal(${e.originalId})" class="ms-2 fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#EditModal"></i>
+                </div>
+            </td>
+            <td class="text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p id="tableResponse" class="m-0"> Delete: </p>
+                    <i onclick="checkDelete(${e.originalId})" data-bs-toggle="modal" data-bs-target="#ConfirmModal" class="ms-2 fa-solid fa-trash"></i>
+                </div>
+            </td>
+        </tr>`
     });
 }
 
@@ -173,7 +226,7 @@ function checkDelete(id){
     deleteID = id;
 }
 function clearDelete(){
-    deleteID = undefined;
+    deleteID = null;
 }
 
 createTable(currentItems);
@@ -251,7 +304,7 @@ function filterAll(){
     
         let filter = values[maxValueIndex].filter(x =>{
             return values[minValueIndex].includes(x);
-        })
+        });
     
         for(let i = 0; i<filter.length;i++){
             filter[i].id = i+1;
@@ -293,11 +346,13 @@ function createNewItem(e){
             img: "../images/mountains-g3d56cdc58_1920.jpg"
         };
     }
+    if(form.get("Image") != ''){
+        newItem.img = form.get("Image")
+    }
     currentItems.push(newItem);
     createTable(currentItems);
     document.getElementById("closeModalButton").click();
     localStorage.setItem('records', JSON.stringify(currentItems));
-    console.log(newItem);
 }
 
 function editModal(id){
@@ -363,7 +418,7 @@ function createEditModal(element){
         </select>
     </div>
     <button type="submit" data-bs-dismiss="modal" class="w-25 mx-auto mt-3 btn btn-primary">
-        Create
+        Confirm Edit
     </button>`
 
     let editLocation = document.getElementById("editLocation").options;
@@ -381,7 +436,7 @@ function editItem(e){
     
     let curStorage = JSON.parse(localStorage.getItem('records'));
     let newItem;
-    if(~curStorage[document.getElementById("idValue").value].address.indexOf(form.get("Location"))){
+    if(~curStorage[document.getElementById("idValue").value-1].address.indexOf(form.get("Location"))){
         newItem = {
             originalId: document.getElementById("idValue").value,
             id: document.getElementById("idValue").value,
