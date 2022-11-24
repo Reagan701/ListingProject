@@ -396,7 +396,7 @@ function createEditModal(element){
         <select id="editProperty" class="form-control" name="Property-Type">
             <option value="Apartment">Apartment</option>
             <option value="Villa">Villa</option>
-            <option value="SingleFamilyHome">Single Family Home</option>
+            <option value="Single Family Home">Single Family Home</option>
             <option value="Studio">Studio</option>
         </select>
     </div>

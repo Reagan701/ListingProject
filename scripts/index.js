@@ -150,11 +150,11 @@ function createHTML(array){
                             <button id="rentButton" data-bs-toggle="modal" data-bs-target="#modal-${e.id}" class="btn">More Info</button>
                                 <p>${e.title}</p>
                                 <p>$ ${e.price}</p>
-                                <div class="d-flex gap-3">
-                                    <i class="fa-solid fa-bed"> ${e.bedrooms}</i>
-                                    <i class="fa-solid fa-shower"> ${e.bathrooms}</i>
-                                    <i class="fa-solid fa-car"> ${e.parking}</i>
-                                    <i class="fa-solid fa-chart-area"> ${e.area} sq. ft</i>
+                                <div style="flex-wrap:wrap" class="d-flex gap-3 justify-content-center">
+                                    <i class="d-flex gap-2 fa-solid fa-bed"> ${e.bedrooms}</i>
+                                    <i class="d-flex gap-2 fa-solid fa-shower"> ${e.bathrooms}</i>
+                                    <i class="d-flex gap-2 fa-solid fa-car"> ${e.parking}</i>
+                                    <i class="d-flex gap-2 fa-solid fa-chart-area"> ${e.area} sq. ft</i>
                                 </div>
                             </div>
                         </div>
